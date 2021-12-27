@@ -1,0 +1,67 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #21222A;
+}
+
+#navbar h4 {
+    color: #DEEBF8;
+}
+
+#navbar h3 {
+    color: #61DAFB;
+}
+
+#title-logo {
+    display: flex;
+    align-items: center;
+}
+
+.margin-right {
+    margin-right: 20px;
+}
+
+body {
+    background-color: #282D35;
+}
+
+#main-content {
+    color: white;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#main-content ul {
+    list-style: none;
+    padding-left: 30px;
+}
+
+#main-content ul li {
+    margin: 10px;
+}
+
+#main-content ul li::before {
+    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: rgb(0, 217, 255); /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
