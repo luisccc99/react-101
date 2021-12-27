@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <nav id="navbar">
             <div id="title-logo">
-                <img src={logo} alt="React Logo" />
+                <img src={logo} alt="React Logo" width={50} />
                 <h3>ReactFacts</h3>
             </div>
             <h4 className='margin-right'>React Course - Project 1</h4>

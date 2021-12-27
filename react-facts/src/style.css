@@ -19,6 +19,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #21222A;
+    height: 60px;
 }
 
 #navbar h4 {
@@ -40,12 +41,17 @@ body {
 
 body {
     background-color: #282D35;
+    background-image: url('./images/react-icon.png');
+    background-repeat: no-repeat;
+    background-position: right -150px center;
+    height: 100vh;
+    background-size: 300px 300px;
 }
 
 #main-content {
     color: white;
-    margin-top: 20px;
-    margin-left: 20px;
+    height: inherit; 
+    padding: 57px 27px;
 }
 
 #main-content ul {
@@ -60,8 +66,13 @@ body {
 #main-content ul li::before {
     content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
     color: rgb(0, 217, 255); /* Change the color */
+    font-size: 1.6em;
     font-weight: bold; /* If you want it to be bold */
     display: inline-block; /* Needed to add space between the bullet and the text */
     width: 1em; /* Also needed for space (tweak if needed) */
     margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
+
+.main--title {
+    font-size: 32px;
 }
