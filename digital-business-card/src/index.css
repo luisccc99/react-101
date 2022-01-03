@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1C1C1C;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.business-card {
+  background-color: #23252C;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 45px;
+  border-radius: 15px;
+}
+
+.body-section__title {
+  color: #F5F5F5;
+}
+
+.body-section__content {
+  color: #DCDCDC;
+}
+
+.business-card__body {
+  padding: 30px;
+}
+
+.business-card__footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #918E9B;
+}
+
+.header-info__name {
+  text-align: center;
+  color: white;
+  margin: 0px;
+}
+
+.header-info__position {
+  color: #F3BF99;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.header-info__website {
+  color: #F5F5F5;
+  text-align: center;
+}
+
+.header-info__website, .header-info__position {
+  margin: 0px;
+}
+
+.personal-image {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  position: absolute;
+}
+
+.personal-image-container {
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
+.business-card__footer {
+  display: flex;
+  margin: auto;
+}
+
+.btn-contact {
+  text-decoration: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
