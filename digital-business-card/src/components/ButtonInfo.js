@@ -2,8 +2,11 @@ import React from 'react';
 
 const ButtonInfo = (props) => {
     return(
-        <div>
-            <a className="btn-contact" href={props.link}>{props.title}</a>
+        <div className='btn-contact'>
+            
+            <a className="link__btn-contact" href={props.link}>
+                <img src={props.image} width='35' alt={props.title} />
+            </a>
         </div>
     );
 };

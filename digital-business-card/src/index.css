@@ -15,7 +15,7 @@ code {
 
 .business-card {
   background-color: #23252C;
-  max-width: 500px;
+  max-width: 400px;
   margin: auto;
   margin-top: 45px;
   border-radius: 15px;
@@ -75,11 +75,13 @@ code {
 
 .business-card__footer {
   display: flex;
+  justify-content: space-around;
   margin: auto;
 }
 
-.btn-contact {
+.link__btn-contact {
   text-decoration: none;
   padding-top: 15px;
   padding-bottom: 15px;
+
 }
