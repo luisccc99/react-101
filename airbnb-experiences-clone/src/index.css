@@ -47,3 +47,50 @@ code {
   border-top-right-radius: 15px;
 
 }
+
+.card__info {
+  display: flex;
+}
+
+.card__info-text {
+  margin: 0;
+}
+
+.card__info-rating {
+  color: #918E9B;
+}
+
+.card__info-star {
+  align-self: center;
+  margin-right: 8px;
+}
+
+.card__info-pricing {
+  font-weight: bold;
+}
+
+.card__image {
+  max-width: 250px;
+  border-radius: 15px;
+}
+
+.card__header {
+  position: relative;
+  width: 50%;
+}
+
+.card__header img {
+  width: 100%;
+  height: auto;
+}
+
+.card__header a {
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
