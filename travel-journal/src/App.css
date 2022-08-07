@@ -1,0 +1,11 @@
+:root {
+  --primary-color: #f78daf;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 20px;
+  overflow: hidden;
+  color: whitesmoke;
+}
