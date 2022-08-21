@@ -3,13 +3,13 @@ module.exports = {
   darkMode: 'class',
   content: ["./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
-    colors: {
-      'light-green': '#caefd7',
-      'light-pink': '#f5bfd7',
-      'light-blue': '#abc9e9'
-    },
     extend: {
-
+      colors: {
+        'light-green': '#caefd7',
+        'green': '#82cf9d',
+        'light-pink': '#f5bfd7',
+        'light-blue': '#abc9e9'
+      },
     },
   },
   plugins: [],
