@@ -2,7 +2,7 @@ import IndustryIcon from '../assets/industry.png'
 
 const Header = () => {
   return (
-    <div className='bg-light-green'>
+    <div className='bg-primary text-white'>
       <div className='m-auto container flex justify-between py-2 h-[65px] items-center'>
         <img className='mr-3 h-full w-auto' src={IndustryIcon} />
         <span className='text-2xl font-bold mr-auto'>Meme Generator</span>
