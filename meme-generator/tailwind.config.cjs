@@ -12,6 +12,9 @@ module.exports = {
         'tertiary': '#b28960',
         'background': '#fffbff'
       },
+      fontFamily: {
+        'kanit': ['kanit', 'sans-serif']
+      }
     },
   },
   plugins: [],
