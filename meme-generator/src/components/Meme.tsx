@@ -1,50 +1,70 @@
-import { FormEvent, HTMLProps, useState } from "react";
+import { FormEvent, HTMLProps, useEffect, useState } from "react";
 
 interface Meme {
+  readonly id: string;
+  name: string;
   url: string;
-  topText: string;
-  bottomText: string;
+  width: number;
+  height: number;
 }
 
 const Meme = () => {
-  const [currentMeme, setCurrentMeme] = useState<Meme>({
-    url: 'https://i.imgflip.com/1bij.jpg',
-    topText: '',
-    bottomText: ''
+  const [memes, setMemes] = useState<Meme[]>([]);
+  const [content, setContent] = useState({
+    top: '',
+    bottom: ''
   });
+  const [currentMeme, setCurrentMeme] = useState<Meme>();
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
-    console.log(name, value)
-    setCurrentMeme(prevMeme => ({
-      ...prevMeme,
+    setContent((prevContent => ({
+      ...prevContent,
       [name]: value
-    }))
+    })))
   }
 
+  const setRandomMeme = (): void => {
+    setCurrentMeme(memes[Math.floor(Math.random() * memes.length)]);
+  }
+
+  useEffect(() => {
+    fetch('https://api.imgflip.com/get_memes')
+      .then(raw => raw.json())
+      .then(res => setMemes(res.data.memes))
+      .catch(err => console.error(err))
+  }, []);
+
   return (
-    <div className='container mt-10'>
+    <div className='container my-10'>
       <div className='flex flex-row justify-start my-3 items-stretch gap-2 flex-wrap'>
         <TextInput
           className='flex-1'
-          name='topText'
+          name='top'
           onChange={handleChange}
           placeholder='Top text' />
         <TextInput
           className='flex-1'
-          name='bottomText'
+          name='bottom'
           onChange={handleChange}
           placeholder='Bottom text' />
       </div>
       <button
         className='appearance-none block uppercase bg-primary-container
          text-on-primary-container font-bold
-          p-2 rounded w-full'>get a new meme image 🖼️</button>
-      <div className='relative mt-5 break-words'>
-        <MemeText textPosition='top'>{currentMeme.topText}</MemeText>
-        <img src={currentMeme.url} className='min-w-sm h-auto m-auto' />
-        <MemeText textPosition='bottom'>{currentMeme.bottomText}</MemeText>
-      </div>
+          p-2 rounded w-full'
+        onClick={setRandomMeme}>get a new meme image 🖼️</button>
+      {
+        currentMeme &&
+        <>
+          <p className='text-center mt-5 mb-1'>"{currentMeme.name}"</p>
+          <div className='relative break-words max-w-md m-auto'>
+            <MemeText textPosition='top'>{content.top}</MemeText>
+            <img src={currentMeme.url} className='min-w-sm h-auto m-auto' />
+            <MemeText textPosition='bottom'>{content.bottom}</MemeText>
+          </div>
+        </>
+      }
     </div>
   );
 };
