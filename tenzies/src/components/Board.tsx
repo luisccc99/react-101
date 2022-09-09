@@ -1,13 +1,28 @@
+import { useState } from "react";
+import Die from "./Die";
+
 
 const Board = () => {
-
+  
+  const randomArray = (): number[] => {
+    const nums: number[] = [];
+    for (let i = 0; i < 10; i++) {
+      nums.push(Math.ceil(Math.random() * 6))
+    }
+    return nums;
+  }
+  const [dice, setDice] = useState<number[]>(randomArray);
+  
   return (
-    <div className='bg-cultured w-[800px] h-[640px] m-auto rounded-md'>
-      <h1 className='font-bold text-2xl font-inter'>Tenzies</h1>
-      <p className='text-independence text-lg'>Roll until all dice are the same. Click <br />
-        each die to freeze it at its current value <br />
-        between rolls.
-      </p>
+    <div className='bg-cultured w-[800px] h-[640px] m-auto rounded-md flex flex-col justify-center'>
+      <div className='grid grid-cols-5 gap-y-10 mx-10 justify-items-center'>
+        {
+          dice.map((n, idx) => {
+            return (<Die key={idx} value={n} />)
+          })
+        }
+      </div>
+      <button className='bg-han-purple text-white' >Roll</button>
     </div>
   );
 }
