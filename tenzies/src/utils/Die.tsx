@@ -5,9 +5,9 @@ export default class Die {
   isHeld: boolean;
   readonly id: string;
 
-  constructor(value: number) {
+  constructor(value: number, isHeld: boolean = false) {
     this.value = value;
-    this.isHeld = false;
+    this.isHeld = isHeld;
     this.id = nanoid();
   }
 

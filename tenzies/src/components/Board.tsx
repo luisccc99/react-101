@@ -32,7 +32,7 @@ const Board = () => {
   const handleToogleDie = (id: string) => {
     setDice(prevDice => prevDice.map(dice => {
       if (dice.id === id) {
-        dice.toogleHeld();
+        return new Die(dice.value, !dice.isHeld);
       }
       return dice;
     }))
