@@ -1,16 +1,19 @@
-
 type DieProps = {
-  value: number
+  value: number;
+  isHeld: boolean;
+  handleToggle: () => void
 }
 
-const Die = (props: DieProps) => {
+const DieComponent = (props: DieProps) => {
   return (
-    <div className='w-20 py-5 font-bold
+    <div className={`w-20 py-5 font-bold
      shadow-lg rounded-md text-4xl 
-     bg-white text-gunmetal cursor-pointer'>
+     bg-white text-gunmetal cursor-pointer
+     ${props.isHeld && 'bg-light-malachite-green'}`}
+     onClick={props.handleToggle}>
       {props.value}
     </div>
   );
 };
 
-export default Die;
+export default DieComponent;
