@@ -1,7 +1,11 @@
-type DieProps = {
+export interface DieType {
+  readonly id: string;
   value: number;
   isHeld: boolean;
-  handleToggle: () => void
+}
+
+type DieProps = Omit<DieType, 'id'> & {
+  toggle: () => void;
 }
 
 const DieComponent = (props: DieProps) => {
@@ -10,7 +14,7 @@ const DieComponent = (props: DieProps) => {
      shadow-lg rounded-md text-4xl 
      bg-white text-gunmetal cursor-pointer
      ${props.isHeld && 'bg-light-malachite-green'}`}
-     onClick={props.handleToggle}>
+     onClick={props.toggle}>
       {props.value}
     </div>
   );
