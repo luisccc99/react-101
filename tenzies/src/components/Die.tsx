@@ -1,10 +1,10 @@
-export interface DieType {
+export interface Die {
   readonly id: string;
   value: number;
   isHeld: boolean;
 }
 
-type DieProps = Omit<DieType, 'id'> & {
+type DieProps = Omit<Die, 'id'> & {
   toggle: () => void;
 }
 

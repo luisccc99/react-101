@@ -1,14 +1,16 @@
 import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
-import DieComponent, { DieType } from "./Die";
+import DieComponent, { Die } from "./Die";
+import differenceInSeconds from "date-fns/differenceInSeconds";
+import { addScore, Score, SCORE_KEY } from "./Score";
 
 const TOTAL_DICE = 10;
 const randomNumber = () => Math.ceil(Math.random() * 6);
 
 
 const Board = () => {
-  const generateDie = (): DieType => {
+  const generateDie = (): Die => {
     return ({
       id: nanoid(),
       value: randomNumber(),
@@ -17,20 +19,21 @@ const Board = () => {
   }
 
   const allNewDice = () => {
-    const dices: DieType[] = []
+    const dices: Die[] = []
     for (let i = 0; i < TOTAL_DICE; i++) {
       dices.push(generateDie());
     }
     return dices;
   }
 
-  const [dice, setDice] = useState<DieType[]>(allNewDice);
+  const [dice, setDice] = useState<Die[]>(allNewDice);
   const [tenzies, setTenzies] = useState(false);
   const [rolls, setRolls] = useState(0);
+  const [startTime, setStartTime] = useState<number>(0);
 
-  const areHeld = (arr: DieType[]) => arr.every(die => die.isHeld);
+  const areHeld = (arr: Die[]) => arr.every(die => die.isHeld);
 
-  const sameValue = (arr: DieType[]) => {
+  const sameValue = (arr: Die[]) => {
     for (let i = 1; i < arr.length; i++) {
       if (arr[i - 1].value !== arr[i].value) {
         return false;
@@ -39,11 +42,18 @@ const Board = () => {
     return true;
   }
 
+  const saveScore = useCallback(() => {
+    const totalTime = differenceInSeconds(Date.now(), startTime);
+    const score: Score = { rolls, seconds: totalTime, dateInMilliseconds: Date.now() }
+    addScore(score);
+  }, [rolls])
+
   useEffect(() => {
     if (areHeld(dice) && sameValue(dice)) {
-      setTenzies(true)
+      setTenzies(true);
+      saveScore();
     } else {
-      setTenzies(false)
+      setTenzies(false);
     }
   }, [dice]);
 
@@ -57,13 +67,18 @@ const Board = () => {
   }
 
   const holdDie = (id: string) => {
+    if (rolls === 0) {
+      setStartTime(Date.now())
+    }
     setDice(prevDice => prevDice.map(die => {
       return id === die.id ? ({ ...die, isHeld: !die.isHeld }) : die;
     }))
   }
 
   const restartGame = () => {
-    setDice(allNewDice())
+    setDice(allNewDice());
+    setRolls(0);
+    setStartTime(Date.now())
   }
 
   return (
@@ -99,7 +114,7 @@ const Board = () => {
       </button>
     </div>
   );
-}
+};
 
 
 export default Board;
