@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
 import DieComponent, { Die } from "./Die";
 import differenceInSeconds from "date-fns/differenceInSeconds";
-import { addScore, Score, SCORE_KEY } from "./Score";
+import { addScore, Score } from "./Score";
 
 const TOTAL_DICE = 10;
 const randomNumber = () => Math.ceil(Math.random() * 6);
@@ -48,6 +48,7 @@ const Board = () => {
     addScore(score);
   }, [rolls])
 
+  
   useEffect(() => {
     if (areHeld(dice) && sameValue(dice)) {
       setTenzies(true);
@@ -56,8 +57,15 @@ const Board = () => {
       setTenzies(false);
     }
   }, [dice]);
-
+  
+  const initializeStartTime = () => {
+    if (rolls === 0) {
+      setStartTime(Date.now())
+    }
+  }
+  
   const rollDice = () => {
+    initializeStartTime();
     setDice(prevDice => {
       return prevDice.map(die => {
         return die.isHeld ? die : generateDie();
@@ -67,9 +75,7 @@ const Board = () => {
   }
 
   const holdDie = (id: string) => {
-    if (rolls === 0) {
-      setStartTime(Date.now())
-    }
+    initializeStartTime();
     setDice(prevDice => prevDice.map(die => {
       return id === die.id ? ({ ...die, isHeld: !die.isHeld }) : die;
     }))

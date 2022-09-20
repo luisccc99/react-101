@@ -1,0 +1,42 @@
+.face {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: 
+  "a . c"
+  "e g f"
+  "d . b";
+}
+
+.pip {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: theme('colors.maastritch-blue');
+  justify-self: center;
+  align-self: center;
+}
+
+.pip:nth-child(2) {
+  grid-area: b;
+}
+
+.pip:nth-child(3) {
+  grid-area: c;
+}
+
+.pip:nth-child(4) {
+  grid-area: d;
+}
+
+.pip:nth-child(5) {
+  grid-area: e;
+}
+
+.pip:nth-child(6) {
+  grid-area: f;
+}
+
+.pip:nth-child(odd):last-child {
+  grid-area: g;
+}

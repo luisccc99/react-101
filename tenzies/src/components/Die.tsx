@@ -1,3 +1,5 @@
+import './Die.css';
+
 export interface Die {
   readonly id: string;
   value: number;
@@ -9,13 +11,18 @@ type DieProps = Omit<Die, 'id'> & {
 }
 
 const DieComponent = (props: DieProps) => {
+  
   return (
-    <div className={`w-20 py-5 font-bold
-     shadow-lg rounded-md text-4xl 
+    <div className={`font-bold w-[100px] h-[100px]
+     shadow-lg rounded-md text-4xl p-1
      bg-white text-gunmetal cursor-pointer
-     ${props.isHeld && 'bg-light-malachite-green'}`}
-     onClick={props.toggle}>
-      {props.value}
+     ${props.isHeld && 'bg-light-malachite-green'} face`}
+      onClick={props.toggle}>
+      {
+        Array(props.value).fill(1).map((_, idx) => (
+          <span key={idx} className='pip'></span>
+        ))
+      }
     </div>
   );
 };

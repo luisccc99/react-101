@@ -1,13 +1,13 @@
 import './App.css'
 import Board from './components/Board'
-import Score from './components/Score'
+import ScoreTable from './components/Score'
 
 function App() {
 
   return (
     <div>
       <Board />
-      <Score />
+      <ScoreTable />
     </div>
   )
 }

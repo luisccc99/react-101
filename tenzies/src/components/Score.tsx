@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 export const SCORE_KEY = 'tenzies-score';
 
@@ -7,17 +8,21 @@ export interface Score {
   dateInMilliseconds: number;
 }
 
+const getScores = (): Score[] => {
+  return JSON.parse(localStorage.getItem(SCORE_KEY) || '[]') as Score[];
+}
+
 export const addScore = (score: Score) => {
-  const scores: Score[] = JSON.parse(localStorage.getItem(SCORE_KEY) || '[]') as Score[];
-  console.log(scores)
+  const scores: Score[] = getScores();
   scores.push(score)
   localStorage.setItem(SCORE_KEY, JSON.stringify(scores));
 }
 
-const Score = () => {
-  return (<div className='bg-cultured w-[800px] mx-auto mt-6 rounded'>
+const ScoreTable = () => {
+  const [scores, setScores] = useState(() => getScores().sort((a, b) => a.seconds - b.seconds));
+  return (<div className='bg-cultured w-[800px] mx-auto mt-6 rounded pb-5'>
     <h3 className='text-2xl font-karla text-maastritch-blue text-start p-3'>Scores</h3>
-    <table className='border-collapse table-fixed w-full'>
+    <table className='border-collapse table-fixed w-full p-5'>
       <thead>
         <tr className='border-b py-2'>
           <TableHeader title='Time' />
@@ -27,26 +32,21 @@ const Score = () => {
       </thead>
       <tbody>
         {
-          Array.from([1, 2, 3, 4]).map((_, idx) => <TableRow key={idx} />)
+          scores.map((s, idx) => (<ScoreRow key={idx} {...s} />))
         }
       </tbody>
     </table>
   </div>);
 }
 
-
-const TableRow = () => {
+const ScoreRow = (props: Score) => {
   return (
     <tr className='hover:bg-gray-300'>
-      <td>12 min</td>
-      <td>8</td>
-      <td>{new Date().toDateString()}</td>
+      <td className='py-2'>{props.seconds} sec</td>
+      <td>{props.rolls}</td>
+      <td>{new Date(props.dateInMilliseconds).toDateString()}</td>
     </tr>
   );
-}
-
-const TableData = () => {
-
 }
 
 const TableHeader = (props: { title: string }) => {
@@ -56,4 +56,4 @@ const TableHeader = (props: { title: string }) => {
 }
 
 
-export default Score;
+export default ScoreTable;
